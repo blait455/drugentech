@@ -1,0 +1,84 @@
+{% extends "shop/base.html" %}
+
+{% load crispy_forms_tags %}
+    
+{% block content %}
+<main class="mt-5 pt-4 grey lighten-3">
+    <div class="container wow fadeIn">
+        <h2 class="my-5 h2 text-center">Checkout form</h2>
+        <div class="row">
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <form  method="POST" class="card-body" >
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div>
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <div>
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md-form input-group pl-0 mb-5">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+                            <input type="text" placeholder="Username" class="form-control py-0">
+                        </div>
+
+                        <div>
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                        <div>
+                            {{ form.address|as_crispy_field }}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 mb-4">
+                                <div>
+                                    {{ form.country|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div>
+                                    {{ form.state|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div>
+                                    {{ form.city|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ form.postal_code|as_crispy_field }}
+                        </div>
+                        <hr>
+                        <h3>Payment options</h3>
+
+                        <hr class="mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" >Place order</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                {% include 'order_snippet.html' %}
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock content %}
